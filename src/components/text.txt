@@ -1,0 +1,110 @@
+import React, { useState } from "react";
+import { Picker } from "emoji-mart";
+// import { Data } from "emoji-mart";
+
+
+const user_list = ["Alan", "Bob", "Carol", "Dean", "Elin"];
+
+const ChatApp = () => {
+  const [message, setMessage] = useState("");
+  const [chats, setChats] = useState([]);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [showMentionList, setShowMentionList] = useState(false);
+
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setMessage(value);
+    if (value.endsWith("@")) {
+      setShowMentionList(true);
+    } else {
+      setShowMentionList(false);
+    }
+  };
+
+  const handleSendClick = () => {
+    if (message) {
+      const randomUserIndex = Math.floor(Math.random() * user_list.length);
+      const randomUser = user_list[randomUserIndex];
+      const chat = {
+        user: randomUser,
+        message: message,
+        likes: 0,
+      };
+      setChats((prevChats) => [...prevChats, chat]);
+      setMessage("");
+    }
+  };
+
+  const handleLikeClick = (index) => {
+    setChats((prevChats) =>
+      prevChats.map((chat, i) =>
+        i === index ? { ...chat, likes: chat.likes + 1 } : chat
+      )
+    );
+  };
+
+  const handleEmojiSelect = (emoji) => {
+    setMessage((prevMessage) => prevMessage + emoji.native);
+    setShowEmojiPicker(false);
+  };
+
+  const handleMentionClick = (mention) => {
+    setMessage((prevMessage) => prevMessage.replace(/@\w*$/, `@${mention} `));
+    setShowMentionList(false);
+  };
+
+  return (
+    <div>
+      <div>
+        {chats.map((chat, index) => (
+          <div key={index} className="chat-message">
+            <span className="chat-username">{chat.user}: </span>
+            <span className="chat-message-text">{chat.message}</span>
+            <button
+              className="like-button"
+              onClick={() => handleLikeClick(index)}
+            >
+              Like ({chat.likes})
+            </button>
+          </div>
+        ))}
+      </div>
+      <div>
+        <input
+          type="text"
+          value={message}
+          onChange={handleInputChange}
+          placeholder="Type your message"
+        />
+        <button onClick={handleSendClick}>Send</button>
+        <button onClick={() => setShowEmojiPicker((prev) => !prev)}>
+          {showEmojiPicker ? "Close Emoji Picker" : "Open Emoji Picker"}
+        </button>
+      </div>
+      {showEmojiPicker && (
+        <Picker
+          set="apple"
+        
+          onSelect={handleEmojiSelect}
+          showSkinTones={false}
+          style={{ position: "absolute", bottom: "50px", right: "10px" }}
+        />
+      )}
+      {showMentionList && (
+        <div className="mention-list">
+          {user_list.map((user) => (
+            <div
+              key={user}
+              onClick={() => handleMentionClick(user)}
+              className="mention-item"
+            >
+              {user}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ChatApp;

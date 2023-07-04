@@ -1,0 +1,156 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.box {
+  background-color: #e8e7e7;
+  width: 70%;
+  height: 90vh;
+  margin: 0 auto;
+  padding: 0rem 2rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  h1 {
+    margin: 0;
+    font-size: 22px;
+  }
+  span {
+    color: #aeaeae;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+}
+hr {
+  color: #aeaeae;
+}
+
+.head2 {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  svg {
+    fill: #aeaeae;
+    font-size: 2rem;
+  }
+}
+.chatbox {
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.chat-message {
+  display: flex;
+  gap: 25px;
+  word-wrap: break-word;
+
+  .name {
+    color: white;
+    font-weight: 400;
+    background-color: rgb(67, 231, 103);
+    width: 50px;
+    text-align: center;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .user {
+    max-width: fit-content;
+    font-size: 25px;
+    justify-content: center;
+    border-radius: 50%;
+    display: flex;
+    height: 50px;
+    align-items: center;
+  }
+
+  .messageData {
+    overflow-x: hidden;
+  }
+
+  .message {
+    background: white;
+    border-radius: 0px 20px 20px;
+    word-wrap: break-word;
+    padding: 15px;
+    font-size: 22px;
+    display: list-item;
+    margin-top: -12px;
+    max-width: 85%;
+  }
+  .like {
+    display: flex;
+    background: none;
+    border: none;
+    font-size: 18px;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: fit-content;
+    cursor: pointer;
+  }
+}
+
+.textarea {
+  display: flex;
+  margin-bottom: 10px;
+  position: sticky;
+  bottom: 0px;
+  border: 1px solid black;
+  border-radius: 30px;
+  background-color: #e8e7e7;
+
+  input {
+    padding: 1rem;
+    width: 55vw;
+    background: none;
+    border: none;
+    font-size: 20px;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 3px;
+    }
+  }
+  button {
+    display: flex;
+    border: none;
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+    align-items: center;
+    margin-left: 1.8rem;
+    position: relative;
+    left: 6rem;
+  }
+}
+
+.mention-list {
+  max-width: fit-content;
+  border-radius: 10px;
+  background-color: white;
+  padding: 1rem;
+  margin-left: 2rem;
+  cursor: pointer;
+  font-size: 20px;
+}
+.emoji {
+  position: absolute;
+  bottom: 10.2rem;
+  right: 23rem;
+}
