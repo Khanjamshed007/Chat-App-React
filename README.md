@@ -2,7 +2,9 @@
 # Project Name: ChatApp
 
 This chat application was built using React.js.
-This Application is simple a dummy application but you can send a message or send emojis also.
+
+This Application is a simple  dummy application but you can send a message or send emojis also.
+
 I using a Emoji-mart for emojis you search emojis and send also.
 
 # Getting Started with Create React App
